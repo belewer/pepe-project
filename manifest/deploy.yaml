@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pepe-project
+  name: pepe-project
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pepe-project
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: pepe-project
+    spec:
+      containers:
+      - image: jovilon/pepe-project:1.1
+        name: pepe-project
+        ports:
+        - containerPort: 4320
+        resources: {}
+status: {}

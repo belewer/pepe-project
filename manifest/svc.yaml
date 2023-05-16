@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: pepe-project
+  name: pepe-project
+spec:
+  type: NodePort
+  ports:
+  - port: 4320
+    protocol: TCP
+    targetPort: 4320
+  selector:
+    app: pepe-project
+status:
+  loadBalancer: {}

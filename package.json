@@ -1,0 +1,29 @@
+{
+  "name": "pepe-project",
+  "version": "1.0.0",
+  "description": "Proyecto pepe",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx jasmine .",
+    "prune": "npx node-prune",
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/belewer/pepe-project.git"
+  },
+  "author": "pepe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/belewer/pepe-project/issues"
+  },
+  "homepage": "https://github.com/belewer/pepe-project#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-prune": "^1.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.40.0",
+    "jasmine": "^5.0.0"
+  }
+}

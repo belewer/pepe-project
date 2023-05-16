@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  CONFIG_LABEL: label1
+  CONFIG_NAME: Pepe-project
+kind: ConfigMap
+metadata:
+  name: pepe-project
