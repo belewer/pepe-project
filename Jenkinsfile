@@ -95,7 +95,7 @@ pipeline {
       steps {
         container('helm') {
           sh '''
-            helm repo add https://charts.bitnami.com/bitnami
+            helm repo add postgresql https://charts.bitnami.com/bitnami/postgresql
             helm repo update
             helm dependency build charts/pepe-project/ 
             helm upgrade --install charts/pepe-project/ -f chart/pepe-project/values.yaml -n apps
