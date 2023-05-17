@@ -65,7 +65,7 @@ pipeline {
         container('docker') {
           sh '''
             apk add jq --no-cache
-            export VERSION=$(jq -r .version package.json)
+            VERSION=$(jq -r .version package.json)
             docker build -t pepe-project:$VERSION .
           '''
         }
