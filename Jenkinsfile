@@ -73,12 +73,15 @@ pipeline {
     }
 
     stage('Publish') {
-      steps {
+        steps {
         container('docker') {
-          sh '''
-            docker tag pepe-project:\$VERSION jovilon/pepe-project:\$VERSION
-            docker push jovilon/pepe-project:\$VERSION
-          '''
+            withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                sh '''
+                    docker login -u $USER -p $PASS
+                    docker tag pepe-project:\$VERSION jovilon/pepe-project:\$VERSION
+                    docker push jovilon/pepe-project:\$VERSION
+                '''
+            }            
         }
       }
     }
