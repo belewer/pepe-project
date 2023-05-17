@@ -35,16 +35,61 @@ pipeline {
         }
       }
     }
-  }
 
-  stages {
-    stage('Prune') {
+    stage('Audit') {
       steps {
         container('node') {
-          sh 'npm run prune'
+          sh 'npm audit'
         }
       }
     }
-  }
 
+    stage('Lint') {
+      steps {
+        container('node') {
+          sh 'npm run lint'
+        }
+      }
+    }
+
+    stage('Test') {
+      steps {
+        container('node') {
+          sh 'npm run test'
+        }
+      }
+    }
+
+    stage('Build') {
+      steps {
+        container('docker') {
+          sh '''
+            apk add jq --no-cache
+            export VERSION=$(jq -r .version package.json)
+            docker build -t pepe-project:$VERSION .
+          '''
+        }
+      }
+    }
+
+    stage('Publish') {
+      steps {
+        container('docker') {
+          sh '''
+            docker tag pepe-project:$VERSION jovilon/pepe-project:$VERSION
+            docker push jovilon/pepe-project:$VERSION
+          '''
+        }
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        container('node') {
+          sh 'npm audit'
+        }
+      }
+    }
+
+  }
 }

@@ -4,9 +4,10 @@
   "description": "Proyecto pepe",
   "main": "index.js",
   "scripts": {
-    "test": "npx jasmine .",
+    "test": "npx jasmine --fail-fast",
     "prune": "curl -sf https://gobinaries.com/tj/node-prune | sh && node-prune",
-    "start": "node index"
+    "start": "node index.js",
+    "lint": "npx eslint . --debug"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "eslint": "^8.40.0",
+    "eslint-config-google": "^0.14.0",
     "jasmine": "^5.0.0"
   }
 }
