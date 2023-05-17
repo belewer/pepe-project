@@ -98,7 +98,7 @@ pipeline {
             helm repo add postgresql https://charts.bitnami.com/bitnami
             helm repo update
             helm dependency build charts/pepe-project/ 
-            helm upgrade --install charts/pepe-project/ -f chart/pepe-project/values.yaml -n apps
+            helm upgrade --install pepe-project charts/pepe-project/ -f chart/pepe-project/values.yaml -n apps
           '''
         }
       }
