@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npx jasmine .",
-    "prune": "npx node-prune",
+    "prune": "curl -sf https://gobinaries.com/tj/node-prune | sh && node-prune",
     "start": "node index"
   },
   "repository": {
