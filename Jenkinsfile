@@ -11,6 +11,11 @@ pipeline {
             command:
             - cat
             tty: true
+          - name: helm
+            image: alpine/helm
+            command:
+            - cat
+            tty: true            
           - name: docker
             image: docker:latest
             command:
@@ -88,8 +93,11 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        container('node') {
-          sh 'npm audit'
+        container('helm') {
+          sh '''
+            helm dependency build charts/pepe-project/ 
+            helm upgrade --install charts/pepe-project/ -f chart/pepe-project/values.yaml -n apps
+          '''
         }
       }
     }
