@@ -5,6 +5,7 @@ pipeline {
         apiVersion: v1
         kind: Pod
         spec:
+          serviceAccount: pepe-jenkins-sa
           containers:
           - name: node
             image: node:16-alpine
