@@ -26,6 +26,7 @@ pipeline {
         '''
     }
   }
+
   stages {
     stage('Install dependencies') {
       steps {
@@ -35,4 +36,15 @@ pipeline {
       }
     }
   }
+
+  stages {
+    stage('Prune') {
+      steps {
+        container('node') {
+          sh 'npm run prune'
+        }
+      }
+    }
+  }
+
 }
