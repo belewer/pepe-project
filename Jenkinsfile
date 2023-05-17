@@ -63,11 +63,11 @@ pipeline {
     stage('Build') {
       steps {
         container('docker') {
-          env.VERSION = sh'$(jq -r .version package.json)'
-          sh '''
-            apk add jq --no-cache
-            docker build -t pepe-project:$VERSION .
-          '''
+            script {
+                sh 'apk add jq'
+                env.VERSION = sh(returnStdout: true, script: '$(jq -r .version package.json)')
+                sh 'docker build -t pepe-project:\$VERSION .'
+            }
         }
       }
     }
@@ -76,8 +76,8 @@ pipeline {
       steps {
         container('docker') {
           sh '''
-            docker tag pepe-project:${env.VERSION} jovilon/pepe-project:${env.VERSION}
-            docker push jovilon/pepe-project:${env.VERSION}
+            docker tag pepe-project:\$VERSION jovilon/pepe-project:\$VERSION
+            docker push jovilon/pepe-project:\$VERSION
           '''
         }
       }
