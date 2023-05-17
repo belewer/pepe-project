@@ -65,7 +65,7 @@ pipeline {
         container('docker') {
             script {
                 sh 'apk add jq'
-                env.VERSION = sh(returnStdout: true, script: '$(jq -r .version package.json)')
+                env.VERSION = sh(returnStdout: true, script: 'jq -r .version package.json')
                 sh 'docker build -t pepe-project:\$VERSION .'
             }
         }
